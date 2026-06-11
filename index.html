@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layar Awal</title>
+    <style>
+        /* Mengatur layar penuh dan posisi di tengah */
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #3434ff; /* Warna latar belakang gelap elegan */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .menu-container {
+            text-align: center;
+        }
+
+        /* Desain Tombol */
+        .btn {
+            display: inline-block;
+            margin: 15px 20px;
+            padding: 15px 40px;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            background-color: transparent;
+            text-decoration: none;
+            border-radius: 8px;
+            border: 2px solid white;
+            transition: all 0.3s ease;
+        }
+
+        /* Efek saat tombol disentuh kursor */
+        .btn:hover {
+            background-color: #f1c40f; /* Berubah kuning */
+            color: #2c3e50;
+            border-color: #f1c40f;
+            transform: scale(1.05); /* Sedikit membesar */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="menu-container">
+        <a href="galeri.html#home" class="btn">HOME</a>
+        <a href="galeri.html#about" class="btn">ABOUT ME</a>
+        <a href="galeri.html#contact" class="btn">CONTACT ME</a>
+    </div>
+
+</body>
+</html>
