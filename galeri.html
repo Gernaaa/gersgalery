@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Perjalananku</title>
+    <style>
+       /* Reset Dasar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* Latar Belakang dan Ruang Bernapas */
+        body {
+            /* Ini dia yang hilang, pemanggil fotonya! */
+            background-image: url('latar.jpg'); 
+            
+            /* Warna biru gelap agar pattern terang langsung terlihat jelas */
+            background-color: #2c3e50; 
+            
+            background-repeat: repeat;
+            background-size: 300px; /* Biar ukurannya pas dan nggak terlalu raksasa */
+            animation: latarBerjalan 40s linear infinite;
+            
+            color: #333;
+            line-height: 1.8;
+            padding: 60px 20px;
+        }
+
+        /* Pastikan kode ini juga ada di bawah body { ... } */
+        @keyframes latarBerjalan {
+            0% { background-position: 0 0; }
+            100% { background-position: 1000px 1000px; }
+        }
+
+        /* Mesin Penggerak Animasi */
+        @keyframes latarBerjalan {
+            0% {
+                background-position: 0 0; /* Titik awal gambar */
+            }
+            100% {
+                /* Menggeser gambar sejauh 1000px secara diagonal. 
+                   Ini yang membuat efek bergerak! */
+                background-position: 1000px 0; 
+            }
+        }
+
+        /* Mesin penggerak pola agar terus bergeser */
+        @keyframes polaBerjalan {
+            0% { background-position: 0 0; }
+            100% { background-position: 40px 40px; }
+        }
+
+        /* Wadah Konten di Tengah (mirip website yang kamu jadikan referensi) */
+        .container {
+            max-width: 700px; /* Lebar maksimal agar tidak terlalu lebar di layar PC */
+            margin: 0 auto;   /* Membuat posisinya pas di tengah */
+        }
+
+        /* Desain Judul dan Sub Judul */
+        .judul-halaman {
+            text-align: center;
+            font-size: 36px;
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .sub-judul {
+            text-align: center;
+            font-size: 16px;
+            color: #ffffff;
+            margin-bottom: 60px;
+            font-style: italic;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Desain Teks Cerita/Paragraf */
+        .cerita {
+            font-size: 18px;
+            color: #333; /* Tulisan warna gelap */
+            text-align: justify;
+            margin-bottom: 40px;
+            
+            /* Trik Kaca Transparan */
+            background-color: rgba(255, 255, 255, 0.80); /* Kotak putih transparan 85% */
+            padding: 20px 25px; /* Memberi ruang napas di dalam kotak */
+            border-radius: 10px; /* Membuat sudut kotak membulat rapi */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Sedikit bayangan estetik */
+        }
+
+        /* Desain Bingkai Foto Besar */
+        .bingkai-foto {
+            background-color: white;
+            padding: 15px 15px 50px 15px; /* Gaya polaroid, bawahnya lebih lebar untuk teks */
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            margin-bottom: 50px; /* Jarak yang jauh ke bawah untuk foto selanjutnya */
+            transition: transform 0.3s ease;
+        }
+
+        .bingkai-foto:hover {
+            transform: scale(1.02); /* Sedikit membesar saat kursor diarahkan ke foto */
+        }
+
+        .bingkai-foto img {
+            width: 100%;      /* Mengisi penuh bingkai */
+            height: auto;     /* Menyesuaikan tinggi foto aslimu */
+            border-radius: 2px;
+            display: block;
+        }
+
+        /* Tulisan (Caption) di bawah foto di dalam bingkai */
+        .caption-foto {
+            margin-top: 15px;
+            font-size: 16px;
+            font-weight: 500;
+            color: #000000;
+            text-align: center;
+            font-style: italic;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Tanda Pembatas (Misal: 3 titik) */
+        .pembatas {
+            text-align: center;
+            margin: 50px 0;
+            color: #ccc;
+            font-size: 24px;
+            letter-spacing: 15px;
+        }
+
+        /* Tombol Kembali ke Awal (Opsional di paling bawah) */
+        .btn-kembali {
+            display: block;
+            width: 250px;
+            margin: 80px auto 20px auto;
+            padding: 15px;
+            text-align: center;
+            background-color: #2c3e50;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-kembali:hover {
+            background-color: #f1c40f;
+            color: #2c3e50;
+        }
+        /* Desain Khusus untuk Bingkai Isi 4 Foto */
+        .grid-4-foto {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Membagi ruangan menjadi 2 kolom rata */
+            gap: 10px; /* Jarak spasi antar ke-4 foto */
+        }
+
+        .grid-4-foto img {
+            width: 100%;
+            aspect-ratio: 1 / 1; /* Membuat ukuran setiap foto jadi kotak sempurna (persegi) */
+            object-fit: cover; /* Mencegah foto jadi gepeng */
+            border-radius: 2px;
+        }
+
+    </style>
+</head>
+<body>
+    <audio autoplay loop controls style="margin-bottom: 20px;">
+        <source src="backsound.mp3" type="audio/mpeg">
+        Browser kamu tidak mendukung pemutar audio.
+    </audio>
+
+    <div class="container">
+        
+        <h1 class="judul-halaman">Perjalanan Penuh Kenangan</h1>
+        <p class="sub-judul">Sebuah diary digital berisi kumpulan momen @gernardosinaga</p>
+
+        <p class="cerita">
+            Terkadang kita mengunjungi tempat-tempat baru yang memberikan kesan mendalam. Di sinilah tempat aku menyimpan semua memori itu. Hidup sangat sayang kalau tidak didokumentasikan.
+        </p>
+
+        <div class="bingkai-foto">
+            <img src="foto1.jpeg" alt="Foto 1">
+            <div class="caption-foto">Hehe ini aku yang dulu sama abang namanya Syalom.</div>
+        </div>
+
+
+
+
+        <div class="pembatas">•••</div>
+
+
+
+
+
+        <p class="cerita">
+            Time flies so fast, huh? ...
+        </p>
+
+
+
+
+        <div class="bingkai-foto">
+            <img src="foto2.jpeg" alt="Foto 2">
+            <div class="caption-foto">Dan ini aku yang sekarang hehe...</div>
+        </div>
+
+        <div class="bingkai-foto">
+            <img src="foto3.jpeg" alt="Foto 3"> <div class="caption-foto">Dan Sekarang lagi berkuliah di ITB (puji Tuhan) hehe... Ini adalah foto pertamaku di ITB bersama mahasiswa FMIPA yang lolos jalur UTBK dan Mandiri (23 Juli 2025).</div>
+        </div>
+        <div class="bingkai-foto">
+            <img src="foto4.jpeg" alt="Foto 4">
+            <div class="caption-foto">Tambahan foto di selasar GKU1 (23 Juli 2025)</div>
+        </div>
+        <div class="pembatas">•••</div>
+
+        <p class="cerita">
+            Salah satu core memory di ITB pastinya OSKM! Di OSKM ini, kami 20 orang dari berbagai fakultas digabungin jadi satu di Keluarga 186. Lucunya, kami punya mentor yang literally sebagai "orang tua kami", haha! Shoutout buat mentor-mentor kita: Mapus, Miwa, dan Pidun. Mereka ini bener-bener caring, super baik, dan kelakuannya selalu berhasil bikin kita ngakak. Such a fun time bisa jadi anak-anak mereka. Love you my keluarga 186!!!1
+        </p>
+
+
+        <div class="bingkai-foto">
+            <img src="foto5.jpeg" alt="Foto 5">
+            <div class="caption-foto">My keluarga 186 di OSKM 2025.</div>
+        </div>
+        <div class="bingkai-foto">
+            <img src="foto6.jpeg" alt="Foto 6">
+            <div class="caption-foto">My Keluarga 186 di OSKM 2025(2).</div>
+        </div>
+        <div class="bingkai-foto">
+            <img src="foto7.jpeg" alt="Foto 7">
+            <div class="caption-foto">My Keluarga 186 di OSKM 2025(3).</div>
+        </div>
+
+
+
+        <div class="pembatas">•••</div>
+
+
+        <p class="cerita">
+            So, let me introduce you guys to "Laskar Kristus". Jujur namanya emang kedengaran agak intense ya, but it's actually just a fun bunch! Lingkaran pertemanan ini bermula dari hal yang sangat kebetulan: sebagian besar dari kami saling kenal karena ketemu di Persekutuan Mahasiswa Kristen tepatnya di House Of Joy. Awalnya cuma buat grup aja yang dinamain "Laskar Kristus" buat tempat chat-chatan tapi lama-kelamaan malah nyambung aja satu-sama lainnya. Dan yang membuatnya makin unik, kami semua ternyata orang Batak. Aku berharap dapat berteman baik dengan semuanya dan mau bertumbuh bersama di ITB sampai waktu memisahkan wkwk.
+        </p>
+
+
+
+        <div class="bingkai-foto">
+            <div class="grid-4-foto">
+                <img src="foto8.jpeg" alt="Kolase 1">
+                <img src="foto9.jpeg" alt="Kolase 2">
+                <img src="foto10.jpeg" alt="Kolase 3">
+                <img src="foto11.jpeg" alt="Kolase 4">
+            </div>
+            <div class="caption-foto">Foto Bersama Laskar Kristus di Acara Natal PMK ITB 2025.</div>
+        </div>
+
+        <p class="cerita">
+            Akhirnya kesampaian juga proper photo bareng anak-anak Laskar di acara Natal PMK ITB kemarin, and honestly, the vibe was so warm and joyful. Di ibadah kemarin, kita dapet powerful reminder lewat khotbah dari Galatia 5:1, tentang bagaimana Kristus udah memerdekakan kita agar kita sungguh-sungguh bebas. Ayat itu bener-bener jadi good reality check buat kita semua untuk terus berdiri teguh dan nggak gampang goyah dalam iman. Bisa merayakan momen Natal seseru dan sehangat ini bareng mereka bener-bener bikin suasananya terasa makin meaningful. So grateful for this squad, and cheers to growing together in faith!
+        </p>
+
+        <div class="pembatas">•••</div>
+
+        <div class="bingkai-foto">
+            
+            <video style="width: 100%; border-radius: 2px; display: block;" autoplay loop muted playsinline>
+                <source src="video1.mp4" type="video/mp4">
+            </video>
+            
+            <div class="caption-foto">Wah, ini adalah Pantai di Puncak Guha</div>
+        </div>
+
+        <p class="cerita">
+            Nah, selanjutnya adalah perjalanan Laskar Kristus ke Pantai Santolo dan Guha!!
+        </p>
+
+        <p class="cerita">
+            Memulai perjalanan ke Garut menuju Pantai Santolo dan Pantai Guha ini bener-bener jadi an unforgettable road trip buat kita. Kita sengaja berangkat midnight, dan awalnya suasana di dalam mobil tuh super excited dan penuh canda tawa. Tapi vibes-nya lumayan berubah tegang pas kita mulai masuk ke area yang julukannya aja udah bikin merinding: "kelokan seribu". Jujur kita semua lowkey panik dan ketar-ketir, apalagi temen kita yang bawa mobil pengalamanya belum terlalu banyak buat menghadapi medan selika-liku itu. Akhirnya, biar aman, kita semua sepakat buat nahan ngantuk dan stay awake sepanjang jalan buat nemenin dia ngobrol, just to make sure dia tetep fokus dan puji Tuhan kita semua selamat sampai tujuan.
+        </p>
+
+        <a href="index.html" class="btn-kembali">⬅ Kembali ke Layar Utama</a>
+
+    </div>
+
+</body>
+</html>
